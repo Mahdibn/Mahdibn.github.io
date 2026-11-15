@@ -72,7 +72,7 @@
   window.addEventListener("pageswap", (event) => {
     const url = event.activation?.entry?.url;
     if (!event.viewTransition || !url) return;
-    const toGerman = /\/de\/?$/.test(new URL(url).pathname);
+    const toGerman = /\/de\//.test(new URL(url).pathname);
     event.viewTransition.types.add(toGerman ? "to-de" : "to-en");
   });
   window.addEventListener("pagereveal", (event) => {
