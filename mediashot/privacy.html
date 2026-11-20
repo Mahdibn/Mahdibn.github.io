@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy – MediaShot</title>
-<meta name="description" content="How the MediaShot app for iPhone and iPad handles your data.">
+<meta name="description" content="How the MediaShot app for iPhone, iPad and Android handles your data.">
 <link rel="icon" href="/mediashot/icon.png">
 <link rel="stylesheet" href="/mediashot/style.css">
 <script src="/mediashot/site.js" defer></script>
@@ -30,7 +30,7 @@
   </section>
 
   <ul class="features highlights" data-stagger>
-    <li class="card reveal"><span class="emoji" aria-hidden="true">🔒</span><strong>Files never leave your device</strong><span class="text">Every conversion and edit happens on your iPhone or iPad.</span></li>
+    <li class="card reveal"><span class="emoji" aria-hidden="true">🔒</span><strong>Files never leave your device</strong><span class="text">Every conversion and edit happens on your iPhone, iPad or Android device.</span></li>
     <li class="card reveal"><span class="emoji" aria-hidden="true">👤</span><strong>No account</strong><span class="text">You never sign up or log in.</span></li>
     <li class="card reveal"><span class="emoji" aria-hidden="true">📣</span><strong>Free with ads</strong><span class="text">Ads come from Google AdMob, with your consent where the law requires it.</span></li>
   </ul>
@@ -59,7 +59,7 @@
     <span class="index">3</span>
     <h2>Your files stay on your device</h2>
     <p>When you open a file, MediaShot makes a temporary working copy inside the app’s private storage, converts it there, and keeps the result until you save or share it. These copies are removed when you choose <em>Clear</em> or <em>Start Over</em>, and any that remain are deleted the next time the app starts. Deleting the app deletes them too.</p>
-    <p>We never receive your files, their contents or their metadata. Files you save go only to the place you choose in the Files app, and files you share go only to the app or person you pick in the share sheet.</p>
+    <p>We never receive your files, their contents or their metadata. Files you save go only to the place you choose (in the Files app on iPhone, or in the system save dialog on Android), and files you share go only to the app or person you pick in the share sheet.</p>
   </section>
 
   <section class="doc-section reveal" id="permissions">
@@ -67,11 +67,12 @@
     <h2>Permissions</h2>
     <ul>
       <li><strong>Photos:</strong> MediaShot uses the system photo picker, so it only receives the photos or videos you select. It cannot see the rest of your library.</li>
-      <li><strong>Files:</strong> the app can only open files you choose in the Files browser or drag into it.</li>
-      <li><strong>Music library:</strong> only if you add a song as background music, iOS asks for access. The song is read on your device and mixed into your video there.</li>
-      <li><strong>Tracking:</strong> iOS asks whether the app may use your device’s advertising identifier for ads (see below).</li>
+      <li><strong>Files:</strong> the app can only open files you choose in the file browser, drag into it, or share to it from another app.</li>
+      <li><strong>Music library (iPhone):</strong> only if you add a song from your Music library as background music, iOS asks for access. The song is read on your device and mixed into your video there. On Android, songs come from audio files you pick, and no permission is needed.</li>
+      <li><strong>Tracking (iPhone):</strong> iOS asks whether the app may use your device’s advertising identifier for ads (see below).</li>
+      <li><strong>Android:</strong> the app asks for no storage, photo or media permissions. The permissions it has all come from Google’s ads SDK and are needed to load ads: internet and network access, the advertising ID, and Android’s ad services (Privacy Sandbox).</li>
     </ul>
-    <p>You can change any of these permissions at any time in <em>iOS Settings → MediaShot</em>.</p>
+    <p>You can change these permissions at any time in <em>iOS Settings → MediaShot</em>, or in Android Settings → Apps → MediaShot.</p>
   </section>
 
   <section class="doc-section reveal" id="ads">
@@ -81,11 +82,11 @@
     <ul>
       <li>your IP address and approximate location derived from it,</li>
       <li>device information (model, operating system, language, app version),</li>
-      <li>the advertising identifier (IDFA), only if you allow tracking in the iOS prompt,</li>
+      <li>the advertising identifier: on iPhone the IDFA, only if you allow tracking in the iOS prompt; on Android the Google advertising ID, which you can reset or delete in Android Settings → Google → Ads (or Settings → Privacy → Ads),</li>
       <li>information about ads shown and your interactions with them.</li>
     </ul>
     <p>Google never receives your files or anything you create in the app.</p>
-    <p><strong>Consent:</strong> When you first open the app in the EU/EEA, UK or Switzerland, a consent form from Google’s User Messaging Platform asks whether you agree to personalised ads. iOS then asks whether the app may track you. You can refuse; you may then see non-personalised or limited ads. You can change your choice at any time in the app under <em>About → Ad Privacy Choices</em> (shown when required in your region), and the tracking permission in <em>iOS Settings → Privacy &amp; Security → Tracking</em>.</p>
+    <p><strong>Consent:</strong> When you first open the app in the EU/EEA, UK or Switzerland, a consent form from Google’s User Messaging Platform asks whether you agree to personalised ads. On iPhone, iOS then asks whether the app may track you. You can refuse; you may then see non-personalised or limited ads. You can change your choice at any time in the app under <em>About → Ad Privacy Choices</em> on iPhone or <em>About → Privacy Settings</em> on Android (shown when required in your region), and on iPhone the tracking permission in <em>iOS Settings → Privacy &amp; Security → Tracking</em>.</p>
     <p>Legal basis: your consent (Art. 6(1)(a) GDPR) for personalised advertising and access to device identifiers; our legitimate interest in financing the free app (Art. 6(1)(f) GDPR) for non-personalised ads. Google may transfer data to the USA; Google is certified under the EU-U.S. Data Privacy Framework.</p>
     <p>More information: <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from apps that use its services</a> and <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
   </section>
@@ -93,7 +94,7 @@
   <section class="doc-section reveal" id="tracking">
     <span class="index">6</span>
     <h2>No other tracking</h2>
-    <p>Apart from Google AdMob, the app uses no analytics tools and no other third-party services, and we do not sell your data. The open-source FFmpeg library the app uses to read more file formats runs entirely on your device and sends nothing anywhere.</p>
+    <p>Apart from Google AdMob, the app uses no analytics tools and no other third-party services, and we do not sell your data. On iPhone, the open-source FFmpeg library the app uses to read more file formats runs entirely on your device and sends nothing anywhere. On Android, the app uses the phone’s own media decoders.</p>
   </section>
 
   <section class="doc-section reveal" id="children">
