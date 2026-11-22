@@ -1,0 +1,225 @@
+/* Callino website: landing page and privacy policy. Same design as the PassDeutsch site, in Callino's teal. */
+
+:root {
+  --accent: #1f9187;
+  --accent-2: #2ba59a;
+  --accent-3: #12524d;
+  --text: #1d1d1f;
+  --muted: #6e6e73;
+  --card: rgba(255, 255, 255, 0.72);
+  --card-border: rgba(0, 0, 0, 0.06);
+  --bg: #fbfbfd;
+  --shadow: 0 10px 30px rgba(10, 60, 55, 0.08);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Solid fills behind white text; not lightened in dark mode, so contrast holds. */
+  --fill-1: #17786f;
+  --fill-2: #12524d;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent: #4fd1c3;
+    --accent-2: #2ba59a;
+    --accent-3: #7ee8dc;
+    --text: #f5f5f7;
+    --muted: #a1a1a6;
+    --card: rgba(22, 30, 29, 0.72);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --bg: #0e1716;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---------- Animated background ---------- */
+
+.backdrop { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.blob {
+  position: absolute; width: 46vmax; height: 46vmax; border-radius: 50%;
+  filter: blur(80px); opacity: 0.26; will-change: transform;
+}
+.blob.one   { background: var(--accent);   top: -18vmax; left: -12vmax; animation: drift-one 22s ease-in-out infinite alternate; }
+.blob.two   { background: var(--accent-3); top: 10vmax;  right: -16vmax; animation: drift-two 26s ease-in-out infinite alternate; }
+.blob.three { background: var(--accent-2); bottom: -22vmax; left: 20vmax; animation: drift-three 30s ease-in-out infinite alternate; }
+@keyframes drift-one   { to { transform: translate(14vmax, 10vmax) scale(1.15); } }
+@keyframes drift-two   { to { transform: translate(-12vmax, 14vmax) scale(0.9); } }
+@keyframes drift-three { to { transform: translate(-10vmax, -12vmax) scale(1.2); } }
+
+/* ---------- Top bar ---------- */
+
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 24px;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--text); }
+.brand img { width: 28px; height: 28px; border-radius: 7px; }
+.brand:hover { text-decoration: none; }
+
+/* ---------- Layout ---------- */
+
+main { max-width: 860px; margin: 0 auto; padding: 0 24px 24px; }
+
+/* ---------- Hero ---------- */
+
+.hero { text-align: center; padding: 56px 0 24px; }
+.hero-icon {
+  width: 128px; height: 128px; border-radius: 29px;
+  box-shadow: 0 20px 40px rgba(10, 60, 55, 0.25);
+  animation: pop-in 0.9s var(--spring) both, float 6s ease-in-out 1s infinite;
+}
+@keyframes pop-in { from { opacity: 0; transform: scale(0.4) rotate(-12deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.hero h1, .doc-hero h1 {
+  font-size: clamp(2.4em, 7vw, 3.6em);
+  line-height: 1.1; margin: 24px 0 8px; letter-spacing: -0.02em;
+  background: linear-gradient(90deg, var(--text) 0%, var(--accent) 30%, var(--accent-3) 50%, var(--accent) 70%, var(--text) 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: rise 0.8s var(--ease-out) 0.15s both, shimmer 7s linear 1.2s infinite;
+}
+@keyframes shimmer { to { background-position: -250% 0; } }
+
+.tagline { font-size: 1.25em; color: var(--muted); margin: 0 auto; max-width: 34em; animation: rise 0.8s var(--ease-out) 0.3s both; }
+.intro { font-size: 1.08em; max-width: 40em; margin: 20px auto 0; animation: rise 0.8s var(--ease-out) 0.45s both; }
+@keyframes rise { from { opacity: 0; transform: translateY(24px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+
+/* ---------- Features ---------- */
+
+h2 { font-size: 1.6em; letter-spacing: -0.01em; margin: 56px 0 18px; text-align: center; }
+
+.features {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px; padding: 0; margin: 0; list-style: none; perspective: 900px;
+}
+.card {
+  --mx: 50%; --my: 50%;
+  position: relative; padding: 20px; border-radius: 20px;
+  background: var(--card); border: 1px solid var(--card-border); box-shadow: var(--shadow);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  overflow: hidden; transform-style: preserve-3d;
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+}
+.card::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.3s;
+  background: radial-gradient(240px circle at var(--mx) var(--my), color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%);
+}
+.card:hover::before { opacity: 1; }
+.card:hover { box-shadow: 0 18px 40px rgba(10, 60, 55, 0.16); }
+.card .emoji {
+  display: inline-grid; place-items: center; width: 44px; height: 44px; margin-bottom: 10px;
+  border-radius: 12px; font-size: 1.4em;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  transition: transform 0.5s var(--spring);
+}
+.card:hover .emoji { transform: scale(1.15) rotate(-8deg); }
+.card strong { display: block; font-size: 1.08em; margin-bottom: 4px; }
+.card span.text { color: var(--muted); }
+
+/* ---------- Scroll reveal ---------- */
+
+.reveal {
+  opacity: 0; transform: translateY(32px) scale(0.97); filter: blur(4px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out), filter 0.8s var(--ease-out);
+  transition-delay: var(--delay, 0s);
+}
+.reveal.visible { opacity: 1; transform: none; filter: none; }
+.no-js .reveal { opacity: 1; transform: none; filter: none; }
+
+/* ---------- Pricing & support ---------- */
+
+.pill {
+  display: block; width: fit-content; margin: 40px auto 0; padding: 12px 22px; border-radius: 999px; text-align: center;
+  background: var(--card); border: 1px solid var(--card-border); box-shadow: var(--shadow);
+}
+.support { text-align: center; }
+.support .links { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+.button {
+  display: inline-block; padding: 10px 22px; border-radius: 999px; font-weight: 600; color: #fff;
+  background: linear-gradient(135deg, var(--fill-1), var(--fill-2));
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--accent) 40%, transparent);
+  transition: transform 0.35s var(--spring), box-shadow 0.35s var(--ease-out);
+}
+.button:hover { text-decoration: none; transform: translateY(-2px) scale(1.04); }
+.button.secondary { color: var(--accent); background: var(--card); border: 1px solid var(--card-border); box-shadow: var(--shadow); }
+
+.note { max-width: 44em; margin: 48px auto 0; font-size: 0.88em; color: var(--muted); text-align: center; }
+footer { text-align: center; font-size: 0.88em; color: var(--muted); padding: 32px 24px 48px; }
+
+/* ---------- Document pages ---------- */
+
+.doc-hero { text-align: center; padding: 48px 0 8px; }
+.doc-hero .hero-icon { width: 84px; height: 84px; border-radius: 19px; }
+.doc-hero h1 { font-size: clamp(2em, 6vw, 2.8em); margin-top: 20px; hyphens: auto; overflow-wrap: break-word; }
+
+.chip {
+  display: inline-block; margin-top: 4px; padding: 4px 14px; border-radius: 999px; font-size: 0.85em; color: var(--muted);
+  background: var(--card); border: 1px solid var(--card-border); animation: rise 0.8s var(--ease-out) 0.3s both;
+}
+.highlights { margin-top: 36px; }
+.highlights .card { text-align: center; }
+.highlights .emoji { margin-inline: auto; }
+
+.toc { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 36px 0 8px; padding: 0; list-style: none; }
+.toc a {
+  display: inline-block; padding: 6px 14px; border-radius: 999px; font-size: 0.88em; color: var(--text);
+  background: var(--card); border: 1px solid var(--card-border);
+  transition: transform 0.35s var(--spring), border-color 0.3s, color 0.3s;
+}
+.toc a:hover { text-decoration: none; transform: translateY(-2px); color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+
+.doc-section {
+  position: relative; margin-top: 18px; padding: 24px 24px 20px 76px; border-radius: 20px;
+  background: var(--card); border: 1px solid var(--card-border); box-shadow: var(--shadow);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); scroll-margin-top: 90px;
+}
+.doc-section .index {
+  position: absolute; top: 22px; left: 22px; display: grid; place-items: center;
+  width: 36px; height: 36px; border-radius: 11px; font-weight: 700; color: #fff;
+  background: linear-gradient(135deg, var(--fill-1), var(--fill-2));
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.doc-section h2 { text-align: left; margin: 2px 0 8px; font-size: 1.25em; }
+.doc-section h3 { margin: 14px 0 4px; font-size: 1.02em; }
+.doc-section p, .doc-section ul { margin: 8px 0; }
+.doc-section ul { padding-left: 1.2em; }
+.doc-section li::marker { color: var(--accent); }
+.doc-section:target { animation: target-glow 1.6s var(--ease-out); }
+@keyframes target-glow {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent); }
+  100% { box-shadow: 0 0 0 14px transparent, var(--shadow); }
+}
+
+.footer-links { display: flex; justify-content: center; gap: 18px; margin-bottom: 8px; }
+
+@media (max-width: 520px) {
+  .topbar { padding: 12px 16px; }
+  .doc-section { padding: 70px 18px 16px; }
+  .doc-section .index { top: 20px; left: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; filter: none; }
+  .hero h1, .doc-hero h1 { background-position: 50% 0; }
+}
